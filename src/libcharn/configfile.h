@@ -1,0 +1,4 @@
+#ifndef CHARN_SRC_LIB_CONFIGFILE
+#define CHARN_SRC_LIB_CONFIGFILE
+
+#endif
