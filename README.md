@@ -14,8 +14,7 @@ by Nick Black (dankamongmen@gmail.com)
 
 ## Requirements
 
-* CMake and C++ development tools
-* Docbook with XSL support
+* CMake 3.2+ and C++ development tools
 
 On Debian-derived systems, this includes:
 
@@ -33,5 +32,5 @@ a sufficient xrandr implementation.
 
 ## Reading
 
-* http://www.sprezzatech.com/blog/0014-new-directions-in-window-management-p1.html
-* http://www.sprezzatech.com/blog/0015-new-directions-in-window-management-p2.html
+* https://nick-black.com/blog/0014-new-directions-in-window-management-p1.html
+* https://nick-black.com/blog/0015-new-directions-in-window-management-p2.html
