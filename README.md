@@ -15,11 +15,13 @@ by Nick Black (dankamongmen@gmail.com)
 ## Requirements
 
 * CMake 3.2+ and C++ development tools
+* libconfig ([http://www.hyperrealm.com/libconfig/libconfig_manual.html])
 
 On Debian-derived systems, this includes:
 
 * build-essential
 * cmake
+* libconfig++-dev
 
 ## Building
 
