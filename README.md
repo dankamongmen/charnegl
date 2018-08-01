@@ -14,16 +14,19 @@ by Nick Black (dankamongmen@gmail.com)
 
 ## Requirements
 
-* CMake 3.2+ and C++ development tools
-* libconfig ([http://www.hyperrealm.com/libconfig/libconfig_manual.html])
+* CMake 3.10+
+* C++ development tools
+* libconfig (<https://www.hyperrealm.com/libconfig/libconfig_manual.html>)
 * DocBook XSL and xsltproc, for man pages
+* GoogleTest
 
 On Debian-derived systems, this includes:
 
 * build-essential
 * cmake
-* libconfig++-dev
 * docbook-xsl
+* googletest
+* libconfig++-dev
 * xsltproc
 
 ## Building
