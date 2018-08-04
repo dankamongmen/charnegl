@@ -1,5 +1,6 @@
 cmake_minimum_required (VERSION 3.10) # necessary for gtest_discover_targets
 project (charn)
+enable_testing()
 
 # Include external CMake config files
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
@@ -19,6 +20,8 @@ target_link_libraries(charn-bin ${CMAKE_THREAD_LIBS_INIT})
 add_executable(charntest src/test/charntest.cpp)
 target_link_libraries(charntest ${GTEST_BOTH_LIBRARIES})
 target_link_libraries(charntest ${CMAKE_THREAD_LIBS_INIT})
+
+gtest_discover_tests(charntest)
 
 # Documentation
 find_program(XSLT_EXECUTABLE NAMES xsltproc)
