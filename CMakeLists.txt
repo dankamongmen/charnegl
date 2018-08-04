@@ -4,10 +4,21 @@ project (charn)
 # Include external CMake config files
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
-find_package(GTest REQUIRED)
+# External deps
+find_package(Threads REQUIRED)
 find_package(Config++ REQUIRED)
+find_package(GTest REQUIRED)
 
+# Libraries / user executables
 add_library(charn src/libcharn/configfile.cpp)
+add_executable(charn-bin src/charn/charn.cpp)
+set_target_properties(charn-bin PROPERTIES OUTPUT_NAME charn)
+target_link_libraries(charn-bin ${CMAKE_THREAD_LIBS_INIT})
+
+# Testing
+add_executable(charntest src/test/charntest.cpp)
+target_link_libraries(charntest ${GTEST_BOTH_LIBRARIES})
+target_link_libraries(charntest ${CMAKE_THREAD_LIBS_INIT})
 
 # Documentation
 find_program(XSLT_EXECUTABLE NAMES xsltproc)
