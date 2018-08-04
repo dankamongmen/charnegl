@@ -12,9 +12,13 @@ find_package(GTest REQUIRED)
 
 # Libraries / user executables
 add_library(charn src/libcharn/configfile.cpp)
+target_include_directories(charn PRIVATE src)
 add_executable(charn-bin src/charn/charn.cpp)
 set_target_properties(charn-bin PROPERTIES OUTPUT_NAME charn)
-target_link_libraries(charn-bin ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(charn-bin
+	${CMAKE_THREAD_LIBS_INIT}
+	charn
+)
 target_include_directories(charn-bin PRIVATE src)
 
 # Testing
@@ -22,6 +26,7 @@ add_executable(charntest src/test/charntest.cpp)
 target_link_libraries(charntest
 	${CMAKE_THREAD_LIBS_INIT}
 	${GTEST_BOTH_LIBRARIES}
+	charn
 )
 target_include_directories(charntest PRIVATE src)
 
