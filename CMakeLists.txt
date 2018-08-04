@@ -15,11 +15,15 @@ add_library(charn src/libcharn/configfile.cpp)
 add_executable(charn-bin src/charn/charn.cpp)
 set_target_properties(charn-bin PROPERTIES OUTPUT_NAME charn)
 target_link_libraries(charn-bin ${CMAKE_THREAD_LIBS_INIT})
+target_include_directories(charn-bin PRIVATE src)
 
 # Testing
 add_executable(charntest src/test/charntest.cpp)
-target_link_libraries(charntest ${GTEST_BOTH_LIBRARIES})
-target_link_libraries(charntest ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(charntest
+	${CMAKE_THREAD_LIBS_INIT}
+	${GTEST_BOTH_LIBRARIES}
+)
+target_include_directories(charntest PRIVATE src)
 
 gtest_discover_tests(charntest)
 
