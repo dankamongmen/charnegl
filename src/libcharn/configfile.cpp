@@ -2,4 +2,5 @@
 #include "libcharn/configfile.h"
 
 ConfigFile::ConfigFile(const std::string &s){
+	libconfig::Config config;
 }

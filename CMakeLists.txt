@@ -12,7 +12,13 @@ find_package(GTest REQUIRED)
 
 # Libraries / user executables
 add_library(charn src/libcharn/configfile.cpp)
-target_include_directories(charn PRIVATE src)
+target_include_directories(charn
+	PUBLIC ${CONFIG++_INCLUDE_DIR}
+	PRIVATE src
+)
+target_link_libraries(charn
+	${CONFIG++_LIBRARY}
+)
 add_executable(charn-bin src/charn/charn.cpp)
 set_target_properties(charn-bin PROPERTIES OUTPUT_NAME charn)
 target_link_libraries(charn-bin
