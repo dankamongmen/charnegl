@@ -11,7 +11,10 @@ find_package(Config++ REQUIRED)
 find_package(GTest REQUIRED)
 
 # Libraries / user executables
-add_library(charn src/libcharn/configfile.cpp)
+add_library(charn SHARED src/libcharn/configfile.cpp)
+set_target_properties(charn PROPERTIES
+	SOVERSION 1
+)
 target_include_directories(charn
 	PUBLIC ${CONFIG++_INCLUDE_DIR}
 	PRIVATE src
