@@ -2,7 +2,7 @@
 #include "libcharn/configfile.h"
 
 TEST(ConfigFile, ConfigFileLoad){
-	auto cf = ConfigFile("");
+	ConfigFile cf;
 }
 
 int main(int argc, char **argv){

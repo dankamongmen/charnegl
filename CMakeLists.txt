@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.10) # necessary for gtest_discover_targets
-project (charn)
+project (charn VERSION 0.0.1)
 enable_testing()
 
 # Include external CMake config files
@@ -60,3 +60,5 @@ foreach(m IN LISTS MAN_NAMES)
 endforeach()
 
 add_custom_target(man ALL DEPENDS ${MAN_FILES})
+
+# Installation

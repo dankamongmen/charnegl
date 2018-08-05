@@ -5,7 +5,14 @@
 
 class ConfigFile {
 public:
-	ConfigFile(const std::string &s);
+	ConfigFile() : config() {};
+
+	// Load from the specified string.
+	// Propagates libconfig++ parsing exceptions.
+	void loadString(const std::string &s);
+
+private:
+	libconfig::Config config;
 };
 
 #endif
