@@ -6,9 +6,11 @@ enable_testing()
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
 # External deps
+include(FindPkgConfig)
 find_package(Threads REQUIRED)
 find_package(Config++ REQUIRED)
 find_package(GTest REQUIRED)
+pkg_check_modules(LIBXDG libxdg-basedir REQUIRED)
 
 # Libraries / user executables
 add_library(charn SHARED src/libcharn/configfile.cpp)

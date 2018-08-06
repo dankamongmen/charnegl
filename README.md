@@ -16,9 +16,10 @@ by Nick Black (dankamongmen@gmail.com)
 
 * CMake 3.10+
 * C++ development tools
-* libconfig (<https://www.hyperrealm.com/libconfig/libconfig_manual.html>)
 * DocBook XSL and xsltproc, for man pages
-* GoogleTest
+* libconfig (<https://www.hyperrealm.com/libconfig/libconfig_manual.html>)
+* libxdg-basedir (<https://github.com/devnev/libxdg-basedir>)
+* GoogleTest (<https://github.com/google/googletest/>)
 
 On Debian-derived systems, this includes:
 
@@ -27,6 +28,7 @@ On Debian-derived systems, this includes:
 * docbook-xsl
 * googletest
 * libconfig++-dev
+* libxdg-basedir-dev
 * xsltproc
 
 ## Building
