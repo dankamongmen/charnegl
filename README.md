@@ -38,6 +38,13 @@ On Debian-derived systems, this includes:
 Within an existing X session, it's best to use Xephyr. Xnest does not provide
 a sufficient xrandr implementation.
 
+## Configuration
+
+A libconfig-format configuration file is used. This can be specified on the
+command line using `-c filename`. Otherwise, charnrc will be used if present
+in `$XDG_CONFIG_HOME/` should that environment variable be defined, and
+otherwise in `$HOME/.config/`.
+
 ## Reading
 
 * https://nick-black.com/blog/0014-new-directions-in-window-management-p1.html

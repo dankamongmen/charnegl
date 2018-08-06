@@ -63,6 +63,7 @@
 			<arg>-h | --help</arg>
 			<arg>-v | --verbose</arg>
 			<arg>-e | --error</arg>
+			<arg>-c filename</arg>
 		</cmdsynopsis>
 	</refsynopsisdiv>
 </refentry>
