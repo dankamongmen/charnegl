@@ -28,6 +28,7 @@ add_executable(charn-bin src/charn/charn.cpp)
 set_target_properties(charn-bin PROPERTIES OUTPUT_NAME charn)
 target_link_libraries(charn-bin
 	${CMAKE_THREAD_LIBS_INIT}
+	${LIBXDG_LDFLAGS}
 	charn
 )
 target_include_directories(charn-bin PRIVATE src)

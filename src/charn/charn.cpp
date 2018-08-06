@@ -1,6 +1,8 @@
 #include <cstdio>
 #include <cstdlib>
 #include <getopt.h>
+#include <iostream>
+#include <basedir.h>
 
 static void
 usage(const char *name,int status){
@@ -50,6 +52,16 @@ int main(int argc, char *argv[]){
 				usage(argv[0], EXIT_FAILURE);
 				break;
 		}
+	}
+	if(!ConfigFile){
+		xdgHandle xdg;
+		if(!xdgInitHandle(&xdg)){
+			std::cerr << "couldn't initialize XDG handle\n";
+			exit(EXIT_FAILURE);
+		}
+		const char *xdgdir = xdgConfigHome(&xdg);
+		std::cout << "XDGConfigHome: " << xdgdir << std::endl;
+		xdgWipeHandle(&xdg);
 	}
 	return EXIT_SUCCESS;
 }
