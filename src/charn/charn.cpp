@@ -1,8 +1,11 @@
 #include <cstdlib>
+#include <cstring>
 #include <getopt.h>
 #include <iostream>
 #include <basedir.h>
 #include "libcharn/config.h"
+
+#define CONFIGFILE "charnrc"
 
 static void
 usage(const char *name, int status){
@@ -27,7 +30,7 @@ int main(int argc, char *argv[]){
 	int opt, longopt;
 	int ErrorSoftfail = 0;
 	int Verbose = 0;
-	const char *ConfigFile = NULL;
+	char *ConfigFile = NULL;
 	opterr = 0; // disallow getopt() diagnostic to stderr
 	while((opt = getopt_long(argc, argv, ":c:hve", longopts, &longopt)) >= 0){
 		switch(opt){
@@ -62,8 +65,15 @@ int main(int argc, char *argv[]){
 		}
 		const char *xdgdir = xdgConfigHome(&xdg);
 		std::cout << "XDGConfigHome: " << xdgdir << std::endl;
+		const size_t xdglen = strlen(xdgdir);
+		ConfigFile = new char[xdglen + strlen(CONFIGFILE) + 2];
+		strcpy(ConfigFile, xdgdir);
+		ConfigFile[xdglen] = '/';
+		strcpy(ConfigFile + xdglen + 1, CONFIGFILE);
 		xdgWipeHandle(&xdg);
 	}
 	CharnConfig cconfig;
+	std::cout << "loading config from " << ConfigFile << std::endl;
+	cconfig.loadFile(ConfigFile);
 	return EXIT_SUCCESS;
 }
