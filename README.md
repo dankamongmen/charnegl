@@ -43,8 +43,8 @@ a sufficient xrandr implementation.
 ## Configuration
 
 A libconfig-format configuration file is used. This can be specified on the
-command line using `-c filename`. Otherwise, charnrc will be used if present
-in `$XDG_CONFIG_HOME/` should that environment variable be defined, and
+command line using `--config filename`. Otherwise, charnrc will be used if
+present in `$XDG_CONFIG_HOME/` should that environment variable be defined, and
 otherwise in `$HOME/.config/`.
 
 ## Reading
