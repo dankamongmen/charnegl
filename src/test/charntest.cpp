@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
-#include "libcharn/configfile.h"
+#include "libcharn/config.h"
 
-TEST(ConfigFile, ConfigFileLoad){
-	ConfigFile cf;
+TEST(CharnConfig, CharnConfigString){
+	CharnConfig cf;
 	cf.loadString("crap = \"argh\";");
 	std::string s;
 	ASSERT_TRUE(cf.getValue("crap", s));

@@ -1,11 +1,11 @@
-#ifndef CHARN_SRC_LIB_CONFIGFILE
-#define CHARN_SRC_LIB_CONFIGFILE
+#ifndef CHARN_SRC_LIB_CONFIG
+#define CHARN_SRC_LIB_CONFIG
 
 #include <libconfig.h++>
 
-class ConfigFile {
+class CharnConfig {
 public:
-ConfigFile() : config() {};
+CharnConfig() : config() {};
 
 // Load from the specified string.
 // Propagates libconfig++ parsing exceptions.

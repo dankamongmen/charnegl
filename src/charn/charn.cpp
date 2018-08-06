@@ -2,6 +2,7 @@
 #include <getopt.h>
 #include <iostream>
 #include <basedir.h>
+#include "libcharn/config.h"
 
 static void
 usage(const char *name, int status){
@@ -55,6 +56,7 @@ int main(int argc, char *argv[]){
 	if(!ConfigFile){
 		xdgHandle xdg;
 		if(!xdgInitHandle(&xdg)){
+			// FIXME fall back to $HOME/
 			std::cerr << "couldn't initialize XDG handle" << std::endl;
 			exit(EXIT_FAILURE);
 		}
@@ -62,5 +64,6 @@ int main(int argc, char *argv[]){
 		std::cout << "XDGConfigHome: " << xdgdir << std::endl;
 		xdgWipeHandle(&xdg);
 	}
+	CharnConfig cconfig;
 	return EXIT_SUCCESS;
 }

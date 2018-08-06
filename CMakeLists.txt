@@ -13,7 +13,7 @@ find_package(GTest REQUIRED)
 pkg_check_modules(LIBXDG libxdg-basedir REQUIRED)
 
 # Libraries / user executables
-add_library(charn SHARED src/libcharn/configfile.cpp)
+add_library(charn SHARED src/libcharn/config.cpp)
 set_target_properties(charn PROPERTIES
 	SOVERSION 1
 )
