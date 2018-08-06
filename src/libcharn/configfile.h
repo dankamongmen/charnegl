@@ -11,6 +11,8 @@ public:
 	// Propagates libconfig++ parsing exceptions.
 	void loadString(const std::string &s);
 
+	template<typename T> bool getValue(const std::string &s, T&);
+
 private:
 	libconfig::Config config;
 };
