@@ -16,16 +16,18 @@ usage(const char *name,int status){
 
 int main(int argc, char *argv[]){
 	const struct option longopts [] = {
-		{ "help",       0,      NULL,	'h',	},
-		{ "verbose",    0,      NULL,	'v',	},
-		{ "error",      0,      NULL,	'e',	},
+		{ "help",	0,	NULL,	'h',	},
+		{ "verbose",	0,	NULL,	'v',	},
+		{ "error",	0,	NULL,	'e',	},
 		{ "config",	0,	NULL,	'c',	},
-		{ NULL,		0,      NULL,	0,	}
+		{ NULL,		0,	NULL,	0,	}
 	};
 	int opt, longopt;
 	int ErrorSoftfail = 0;
 	int Verbose = 0;
-	while((opt = getopt_long(argc, argv, "hve", longopts, &longopt)) >= 0){
+	const char *ConfigFile = NULL;
+	opterr = 0; // disallow getopt() diagnostic to stderr
+	while((opt = getopt_long(argc, argv, ":c:hve", longopts, &longopt)) >= 0){
 		switch(opt){
 			case 'h':
 				usage(argv[0], EXIT_SUCCESS);
@@ -36,6 +38,13 @@ int main(int argc, char *argv[]){
 			case 'e':
 				ErrorSoftfail = 1;
 				printf("Disabling X error passthrough\n");
+				break;
+			case 'c':
+				if(ConfigFile){
+					fprintf(stderr, "can't provide -c twice\n");
+					usage(argv[0], EXIT_FAILURE);
+				}
+				ConfigFile = optarg;
 				break;
 			default:
 				usage(argv[0], EXIT_FAILURE);
