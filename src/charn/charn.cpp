@@ -1,18 +1,17 @@
-#include <cstdio>
 #include <cstdlib>
 #include <getopt.h>
 #include <iostream>
 #include <basedir.h>
 
 static void
-usage(const char *name,int status){
-	FILE *fp = status ? stderr : stdout;
-	fprintf(fp, "usage: %s [ options ]\n",name);
-	fprintf(fp, "options:\n");
-	fprintf(fp, "\t-c/--config filename: specify configuration file\n");
-	fprintf(fp, "\t-e/--error: don't exit on soft X errors\n");
-	fprintf(fp, "\t-h/--help: display this help text\n");
-	fprintf(fp, "\t-v/--verbose: increase verbosity\n");
+usage(const char *name, int status){
+	std::ostream &os = status ? std::cerr : std::cout;
+	os << "usage: " << name << " [ options ]\n";
+	os << "options:\n";
+	os << "\t-c/--config filename: specify configuration file\n";
+	os << "\t-e/--error: don't exit on soft X errors\n";
+	os << "\t-h/--help: display this help text\n";
+	os << "\t-v/--verbose: increase verbosity" << std::endl;
 	exit(status);
 }
 
@@ -39,11 +38,11 @@ int main(int argc, char *argv[]){
 				break;
 			case 'e':
 				ErrorSoftfail = 1;
-				printf("Disabling X error passthrough\n");
+				std::cout << "disabling X error passthrough" << std::endl;
 				break;
 			case 'c':
 				if(ConfigFile){
-					fprintf(stderr, "can't provide -c twice\n");
+					std::cerr << "can't provide -c twice" << std::endl;
 					usage(argv[0], EXIT_FAILURE);
 				}
 				ConfigFile = optarg;
@@ -56,7 +55,7 @@ int main(int argc, char *argv[]){
 	if(!ConfigFile){
 		xdgHandle xdg;
 		if(!xdgInitHandle(&xdg)){
-			std::cerr << "couldn't initialize XDG handle\n";
+			std::cerr << "couldn't initialize XDG handle" << std::endl;
 			exit(EXIT_FAILURE);
 		}
 		const char *xdgdir = xdgConfigHome(&xdg);
