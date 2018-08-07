@@ -2,6 +2,12 @@ cmake_minimum_required (VERSION 3.10) # necessary for gtest_discover_targets
 project (charn VERSION 0.0.1)
 enable_testing()
 
+# Compiler-specific flags. One would think that CMake would somehow abstract
+# most of this away...
+set(CHARN_CXX_FLAGS
+	-O2 -Wall -W -Wshadow -Wextra -fvisibility=hidden
+	CACHE STRING "CXXFLAGS used to compiler ${PROJECT_NAME}")
+
 # Include external CMake config files
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 
@@ -17,6 +23,7 @@ add_library(charn SHARED src/libcharn/config.cpp)
 set_target_properties(charn PROPERTIES
 	SOVERSION 1
 )
+target_compile_options(charn PRIVATE ${CHARN_CXX_FLAGS})
 target_include_directories(charn
 	PUBLIC ${CONFIG++_INCLUDE_DIR}
 	PRIVATE src
@@ -26,21 +33,23 @@ target_link_libraries(charn
 )
 add_executable(charn-bin src/charn/charn.cpp)
 set_target_properties(charn-bin PROPERTIES OUTPUT_NAME charn)
+target_compile_options(charn-bin PRIVATE ${CHARN_CXX_FLAGS})
+target_include_directories(charn-bin PRIVATE src)
 target_link_libraries(charn-bin
 	${CMAKE_THREAD_LIBS_INIT}
 	${LIBXDG_LDFLAGS}
 	charn
 )
-target_include_directories(charn-bin PRIVATE src)
 
 # Testing
 add_executable(charntest src/test/charntest.cpp)
+target_compile_options(charntest PRIVATE ${CHARN_CXX_FLAGS})
+target_include_directories(charntest PRIVATE src)
 target_link_libraries(charntest
 	${CMAKE_THREAD_LIBS_INIT}
 	${GTEST_BOTH_LIBRARIES}
 	charn
 )
-target_include_directories(charntest PRIVATE src)
 
 gtest_discover_tests(charntest)
 
