@@ -19,8 +19,12 @@ input = {
   # names may be specified; these match libinput "Device". If no name is
   # specified the stanza is default for that class. There may be only one
   # default stanza per class.
-  keyboard = [
+  keyboards = (
+    # Default keyboard -- no name
     {
-    };
-  ];
+      events = (
+        { in = [ "Super", "F1" ]; action = [ "launch-exec", "/usr/bin/x-terminal-emulator" ]; }
+      );
+    }
+  );
 };
