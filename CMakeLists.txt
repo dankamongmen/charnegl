@@ -4,8 +4,9 @@ enable_testing()
 
 # Compiler-specific flags. One would think that CMake would somehow abstract
 # most of this away...
+# FIXME turn on -fvisibility=hidden
 set(CHARN_CXX_FLAGS
-	-O2 -Wall -W -Wshadow -Wextra -fvisibility=hidden
+	-O2 -Wall -W -Wshadow -Wextra
 	CACHE STRING "CXXFLAGS used to compiler ${PROJECT_NAME}")
 
 # Include external CMake config files
