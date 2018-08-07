@@ -1,0 +1,26 @@
+# charn default config. This config explicitly encodes charn defaults, i.e.
+# using this file ought be equivalent to using no config file at all.
+#
+# The charn configuration file uses libconfig syntax, specified at
+#  https://www.hyperrealm.com/libconfig/libconfig_manual.html
+#
+# Only syntactic errors are detected by libconfig, and charn does not perform
+# complete semantic enforcement. In particular, unknown/unused elements will
+# not cause an error.
+#
+# charn's configuration file can be specified using the -c command line option.
+# Otherwise, the XDG configuration directory, as reported by libxdg-basedir,
+# will be checked for a file named "charnrc".
+
+# Define actions for input events from various devices.
+input = {
+  # For each input class, define an array of events and actions.
+  # Input classes correspond to libinput "capabilities". For each device,
+  # names may be specified; these match libinput "Device". If no name is
+  # specified the stanza is default for that class. There may be only one
+  # default stanza per class.
+  keyboard = [
+    {
+    };
+  ];
+};
