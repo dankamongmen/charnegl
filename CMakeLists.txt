@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.10) # necessary for gtest_discover_targets
+cmake_minimum_required (VERSION 3.12) # 3.12's necessary for OBJECT libraries
 project (charn VERSION 0.0.1)
 enable_testing()
 
@@ -77,3 +77,5 @@ endforeach()
 add_custom_target(man ALL DEPENDS ${MAN_FILES})
 
 # Installation
+install(TARGETS charn-bin DESTINATION bin)
+install(TARGETS charn DESTINATION lib)

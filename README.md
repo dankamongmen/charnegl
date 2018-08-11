@@ -14,7 +14,7 @@ A Wayland ZUI compositor by Nick Black (dankamongmen@gmail.com)
 
 ## Requirements
 
-* CMake 3.10+
+* CMake 3.12+
 * C++ development tools
 * DocBook XSL and xsltproc, for man pages
 * GoogleTest (<https://github.com/google/googletest/>)
