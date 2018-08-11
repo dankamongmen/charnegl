@@ -9,14 +9,11 @@ set(CHARN_CXX_FLAGS
 	-O2 -Wall -W -Wshadow -Wextra
 	CACHE STRING "CXXFLAGS used to compiler ${PROJECT_NAME}")
 
-# Include external CMake config files
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
-
 # External deps
 include(FindPkgConfig)
 find_package(Threads REQUIRED)
-find_package(Config++ REQUIRED)
 find_package(GTest REQUIRED)
+pkg_check_modules(LIBCONFIG++  libconfig++>=1.5 REQUIRED)
 pkg_check_modules(LIBINPUT libinput>=1.11.2 REQUIRED)
 pkg_check_modules(LIBXDG libxdg-basedir>=1.2.0 REQUIRED)
 pkg_check_modules(WAYLAND-SERVER wayland-server>=1.15.0 REQUIRED)
@@ -29,11 +26,11 @@ set_target_properties(charn PROPERTIES
 )
 target_compile_options(charn PRIVATE ${CHARN_CXX_FLAGS})
 target_include_directories(charn
-	PUBLIC ${CONFIG++_INCLUDE_DIR}
+	PUBLIC ${LIBCONFIG++_INCLUDE_DIRS}
 	PRIVATE src
 )
 target_link_libraries(charn
-	${CONFIG++_LIBRARY}
+	${LIBCONFIG++_LDFLAGS}
 )
 add_executable(charn-bin src/charn/charn.cpp)
 set_target_properties(charn-bin PROPERTIES OUTPUT_NAME charn)
