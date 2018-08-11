@@ -19,7 +19,7 @@ A Wayland ZUI compositor by Nick Black (dankamongmen@gmail.com)
 * DocBook XSL and xsltproc, for man pages
 * GoogleTest (<https://github.com/google/googletest/>)
 * libconfig (<https://www.hyperrealm.com/libconfig/libconfig_manual.html>)
-* libinput 1.11+ (<https://www.freedesktop.org/wiki/Software/libinput/>)
+* libinput 1.11.2+ (<https://www.freedesktop.org/wiki/Software/libinput/>)
 * libwayland 1.15+ (<https://wayland.freedesktop.org/>)
 * libxdg-basedir 1.2+ (<https://github.com/devnev/libxdg-basedir>)
 
@@ -32,6 +32,7 @@ On Debian-derived systems, this includes:
 * libconfig++-dev
 * libinput-dev
 * libwayland-dev
+* libwayland-egl-backend-dev
 * libxdg-basedir-dev
 * xsltproc
 

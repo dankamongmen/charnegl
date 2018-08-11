@@ -17,9 +17,10 @@ include(FindPkgConfig)
 find_package(Threads REQUIRED)
 find_package(Config++ REQUIRED)
 find_package(GTest REQUIRED)
-pkg_check_modules(LIBINPUT libinput>=1.11.0 REQUIRED)
+pkg_check_modules(LIBINPUT libinput>=1.11.2 REQUIRED)
 pkg_check_modules(LIBXDG libxdg-basedir>=1.2.0 REQUIRED)
 pkg_check_modules(WAYLAND-SERVER wayland-server>=1.15.0 REQUIRED)
+pkg_check_modules(WAYLAND-EGL wayland-egl-backend>=3 REQUIRED)
 
 # Libraries / user executables
 add_library(charn SHARED src/libcharn/config.cpp)
