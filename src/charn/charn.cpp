@@ -13,7 +13,6 @@ usage(const char *name, int status){
 	os << "usage: " << name << " [ options ]\n";
 	os << "options:\n";
 	os << "\t-c/--config filename: specify configuration file\n";
-	os << "\t-e/--error: don't exit on soft X errors\n";
 	os << "\t-h/--help: display this help text\n";
 	os << "\t-v/--verbose: increase verbosity" << std::endl;
 	exit(status);
@@ -23,12 +22,10 @@ int main(int argc, char *argv[]){
 	const struct option longopts [] = {
 		{ "help",	0,	NULL,	'h',	},
 		{ "verbose",	0,	NULL,	'v',	},
-		{ "error",	0,	NULL,	'e',	},
 		{ "config",	0,	NULL,	'c',	},
 		{ NULL,		0,	NULL,	0,	}
 	};
 	int opt, longopt;
-	int ErrorSoftfail = 0;
 	int Verbose = 0;
 	char *ConfigFile = NULL;
 	opterr = 0; // disallow getopt() diagnostic to stderr
@@ -39,10 +36,6 @@ int main(int argc, char *argv[]){
 				break;
 			case 'v':
 				Verbose = 1;
-				break;
-			case 'e':
-				ErrorSoftfail = 1;
-				std::cout << "disabling X error passthrough" << std::endl;
 				break;
 			case 'c':
 				if(ConfigFile){

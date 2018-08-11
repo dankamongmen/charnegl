@@ -62,7 +62,6 @@
 			<command>&dhpackage;</command>
 			<arg>-h | --help</arg>
 			<arg>-v | --verbose</arg>
-			<arg>-e | --error</arg>
 			<arg>-c | --config filename</arg>
 		</cmdsynopsis>
 	</refsynopsisdiv>
