@@ -1,5 +1,5 @@
 # Charn
-by Nick Black (dankamongmen@gmail.com)
+A Wayland ZUI compositor by Nick Black (dankamongmen@gmail.com)
 
 ![image](doc/charn.gif)
 
@@ -18,6 +18,7 @@ by Nick Black (dankamongmen@gmail.com)
 * C++ development tools
 * DocBook XSL and xsltproc, for man pages
 * libconfig (<https://www.hyperrealm.com/libconfig/libconfig_manual.html>)
+* libinput (<https://www.freedesktop.org/wiki/Software/libinput/>)
 * libxdg-basedir (<https://github.com/devnev/libxdg-basedir>)
 * GoogleTest (<https://github.com/google/googletest/>)
 
@@ -28,17 +29,13 @@ On Debian-derived systems, this includes:
 * docbook-xsl
 * googletest
 * libconfig++-dev
+* libinput-dev
 * libxdg-basedir-dev
 * xsltproc
 
 ## Building
 
 * mkdir build && cd build && cmake .. && make && sudo make install
-
-## Testing
-
-Within an existing X session, it's best to use Xephyr. Xnest does not provide
-a sufficient xrandr implementation.
 
 ## Configuration
 

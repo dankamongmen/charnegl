@@ -17,6 +17,7 @@ include(FindPkgConfig)
 find_package(Threads REQUIRED)
 find_package(Config++ REQUIRED)
 find_package(GTest REQUIRED)
+pkg_check_modules(LIBINPUT libinput REQUIRED)
 pkg_check_modules(LIBXDG libxdg-basedir REQUIRED)
 
 # Libraries / user executables
