@@ -17,10 +17,11 @@ A Wayland ZUI compositor by Nick Black (dankamongmen@gmail.com)
 * CMake 3.10+
 * C++ development tools
 * DocBook XSL and xsltproc, for man pages
-* libconfig (<https://www.hyperrealm.com/libconfig/libconfig_manual.html>)
-* libinput (<https://www.freedesktop.org/wiki/Software/libinput/>)
-* libxdg-basedir (<https://github.com/devnev/libxdg-basedir>)
 * GoogleTest (<https://github.com/google/googletest/>)
+* libconfig (<https://www.hyperrealm.com/libconfig/libconfig_manual.html>)
+* libinput 1.11+ (<https://www.freedesktop.org/wiki/Software/libinput/>)
+* libwayland 1.15+ (<https://wayland.freedesktop.org/>)
+* libxdg-basedir 1.2+ (<https://github.com/devnev/libxdg-basedir>)
 
 On Debian-derived systems, this includes:
 
@@ -30,6 +31,7 @@ On Debian-derived systems, this includes:
 * googletest
 * libconfig++-dev
 * libinput-dev
+* libwayland-dev
 * libxdg-basedir-dev
 * xsltproc
 
