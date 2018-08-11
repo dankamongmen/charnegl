@@ -38,7 +38,7 @@ On Debian-derived systems, this includes:
 
 ## Building
 
-* mkdir build && cd build && cmake .. && make && sudo make install
+* mkdir build && cd build && cmake .. && make && make test && sudo make install
 
 ## Configuration
 

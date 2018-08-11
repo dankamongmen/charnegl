@@ -46,7 +46,7 @@ target_link_libraries(charn-bin
 )
 
 # Testing
-add_executable(charntest src/test/charntest.cpp)
+add_executable(charntest src/test/charntest.cpp src/test/config.cpp)
 target_compile_options(charntest PRIVATE ${CHARN_CXX_FLAGS})
 target_include_directories(charntest PRIVATE src)
 target_link_libraries(charntest
