@@ -12,6 +12,9 @@
 # Otherwise, the XDG configuration directory, as reported by libxdg-basedir,
 # will be checked for a file named "charnrc".
 
+# The toplevel is a free list of group stanzas. Their names correlate to
+# registered CharnConfigModule classes.
+
 # Define actions for input events from various devices.
 input = {
   # For each input class, define an array of events and actions.
@@ -23,7 +26,7 @@ input = {
     # Default keyboard -- no name
     {
       events = (
-        { in = [ "Super", "F1" ]; action = [ "launch-exec", "/usr/bin/x-terminal-emulator" ]; }
+        { in = [ "Super", "F1" ]; action = [ "launch-exec", "/usr/bin/weston-terminal" ]; }
       );
     }
   );

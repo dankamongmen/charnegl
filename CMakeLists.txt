@@ -2,6 +2,8 @@ cmake_minimum_required (VERSION 3.12) # 3.12's necessary for OBJECT libraries
 project (charn VERSION 0.0.1)
 enable_testing()
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Compiler-specific flags. One would think that CMake would somehow abstract
 # most of this away...
 # FIXME turn on -fvisibility=hidden
@@ -20,7 +22,7 @@ pkg_check_modules(WAYLAND-SERVER wayland-server>=1.15.0 REQUIRED)
 pkg_check_modules(WAYLAND-EGL wayland-egl-backend>=3 REQUIRED)
 
 # Libraries / user executables
-add_library(charn SHARED src/libcharn/config.cpp)
+add_library(charn SHARED src/libcharn/config.cpp src/libcharn/input.cpp)
 set_target_properties(charn PROPERTIES
 	SOVERSION 1
 )
