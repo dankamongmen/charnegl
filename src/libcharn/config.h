@@ -11,7 +11,8 @@ class CharnConfigModule {
 public:
 CharnConfigModule() = default;
 virtual ~CharnConfigModule() = default;
-virtual void Compress() = 0;
+// validateConfig will be passed the Setting object for its stanza
+virtual void validateConfig(libconfig::Setting& setting) = 0;
 };
 
 class CharnConfigModuleFactory {
@@ -39,10 +40,9 @@ static std::map<std::string, TCreateMethod> s_methods;
 };
 
 template <typename T>
-class RegisteredInFactory
-{
+class RegisteredInFactory {
 protected:
-    static bool s_bRegistered;
+static bool s_bRegistered;
 };
 
 template <typename T>
