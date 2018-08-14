@@ -7,11 +7,14 @@
 class InputRouter : public CharnConfigModule,
 			public RegisteredInFactory<InputRouter> {
 public:
-virtual void validateConfig(libconfig::Setting& setting) override {
-	// TODO validate out setting, build up Input
+// TODO validate out setting, build up Input
+virtual void validateConfig(libconfig::Setting& setting) override { }
+
+static std::string getModuleName(){
 	s_bRegistered = true;
+	return "input";
 }
-static std::string getModuleName(){ return "input"; }
+
 static std::unique_ptr<CharnConfigModule> CreateMethod(){ return std::make_unique<InputRouter>(); }
 };
 

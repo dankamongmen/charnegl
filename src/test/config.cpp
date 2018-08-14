@@ -33,9 +33,14 @@ virtual void validateConfig(libconfig::Setting& setting) override {
 	EXPECT_STREQ(CHARNSTANZA_KEY, s.getName());
 	std::string val = s;
 	EXPECT_EQ(CHARNSTANZA_VAL, val);
-	s_bRegistered = true;
+	//s_bRegistered = true;
 }
-static std::string getModuleName(){ return CHARNSTANZA_LABEL; }
+
+static std::string getModuleName(){
+	s_bRegistered = true;
+	return CHARNSTANZA_LABEL;
+}
+
 static std::unique_ptr<CharnConfigModule> CreateMethod(){ return std::make_unique<TestModule>(); }
 };
 
