@@ -9,7 +9,7 @@ class InputRouter : public CharnConfigModule,
 public:
 virtual void validateConfig(libconfig::Setting& setting) override {
 	// TODO validate out setting, build up Input
-	s_bRegistered;
+	s_bRegistered = true;
 }
 static std::string getModuleName(){ return "input"; }
 static std::unique_ptr<CharnConfigModule> CreateMethod(){ return std::make_unique<InputRouter>(); }

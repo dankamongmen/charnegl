@@ -21,12 +21,19 @@ TEST(CharnConfig, CharnConfigString){
 }
 
 #define CHARNSTANZA_LABEL "testcharnstanza"
+#define CHARNSTANZA_KEY "testcharnkey"
+#define CHARNSTANZA_VAL "testcharnval"
 
 class TestModule : public CharnConfigModule, public RegisteredInFactory<TestModule> {
 public:
 virtual void validateConfig(libconfig::Setting& setting) override {
-        // TODO validate out setting, build up Input
-        s_bRegistered;
+	ASSERT_EQ(1, setting.getLength());
+	libconfig::Setting& s = setting[0];
+	ASSERT_EQ(libconfig::Setting::Type::TypeString, s.getType());
+	EXPECT_STREQ(CHARNSTANZA_KEY, s.getName());
+	std::string val = s;
+	EXPECT_EQ(CHARNSTANZA_VAL, val);
+	s_bRegistered = true;
 }
 static std::string getModuleName(){ return CHARNSTANZA_LABEL; }
 static std::unique_ptr<CharnConfigModule> CreateMethod(){ return std::make_unique<TestModule>(); }
@@ -36,8 +43,8 @@ static std::unique_ptr<CharnConfigModule> CreateMethod(){ return std::make_uniqu
 // a relevant configuration.
 TEST(CharnConfig, CharnConfigModule){
 	CharnConfig cf;
-	// toplevel "test" won't pass without our module being registered
-	cf.loadString(CHARNSTANZA_LABEL " = { intest=\"testvalue\"; };");
+	// toplevel CHARNSTANZA_LABEL won't pass without our module being registered
+	cf.loadString(CHARNSTANZA_LABEL " = { " CHARNSTANZA_KEY "=\"" CHARNSTANZA_VAL "\"; };");
 }
 
 // Verify that an unregistered toplevel stanza gets rejected.
@@ -45,7 +52,7 @@ TEST(CharnConfig, CharnConfigModuleReject){
 	CharnConfig cf;
 	bool excepted = false;
 	try{
-		cf.loadString("crap = { intest=\"testvalue\"; };");
+		cf.loadString("qux = { foo=\"bar\"; };");
 	}catch(libconfig::ParseException& pe){
 		excepted = true;
 	}

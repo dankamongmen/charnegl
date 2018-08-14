@@ -13,10 +13,13 @@ void CharnConfig::validateToplevel(){
 			throw libconfig::ParseException(s.getSourceFile(),
 				s.getSourceLine(), s.getName());
 		}
-		if(!CharnConfigModuleFactory::Create(s.getName())){
+		std::unique_ptr<CharnConfigModule> ccm = 
+			CharnConfigModuleFactory::Create(s.getName());
+		if(!ccm){
 			throw libconfig::ParseException(s.getSourceFile(),
 				s.getSourceLine(), s.getName());
 		}
+		ccm->validateConfig(s);
 	}
 }
 
