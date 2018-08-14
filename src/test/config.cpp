@@ -40,6 +40,7 @@ TEST(CharnConfig, CharnConfigModule){
 	cf.loadString(CHARNSTANZA_LABEL " = { intest=\"testvalue\"; };");
 }
 
+// Verify that an unregistered toplevel stanza gets rejected.
 TEST(CharnConfig, CharnConfigModuleReject){
 	CharnConfig cf;
 	bool excepted = false;
