@@ -20,20 +20,33 @@ TEST(CharnConfig, CharnConfigString){
 	cf.loadString(str);
 }
 
+#define CHARNSTANZA_LABEL "testcharnstanza"
+
 class TestModule : public CharnConfigModule, public RegisteredInFactory<TestModule> {
 public:
 virtual void validateConfig(libconfig::Setting& setting) override {
         // TODO validate out setting, build up Input
         s_bRegistered;
 }
-static std::string getModuleName(){ return "test"; }
+static std::string getModuleName(){ return CHARNSTANZA_LABEL; }
 static std::unique_ptr<CharnConfigModule> CreateMethod(){ return std::make_unique<TestModule>(); }
 };
-
 
 // Verify that we can register a CharnConfigModule and have it called back for
 // a relevant configuration.
 TEST(CharnConfig, CharnConfigModule){
 	CharnConfig cf;
-	cf.loadString("test = { intest=\"testvalue\"; };");
+	// toplevel "test" won't pass without our module being registered
+	cf.loadString(CHARNSTANZA_LABEL " = { intest=\"testvalue\"; };");
+}
+
+TEST(CharnConfig, CharnConfigModuleReject){
+	CharnConfig cf;
+	bool excepted = false;
+	try{
+		cf.loadString("crap = { intest=\"testvalue\"; };");
+	}catch(libconfig::ParseException& pe){
+		excepted = true;
+	}
+	EXPECT_TRUE(excepted);
 }
