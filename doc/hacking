@@ -1,0 +1,9 @@
+Configuration
+-------------
+
+Configuration is driven through a single file based off libconfig++. Each
+module requiring configuration gets its own toplevel stanza. An instance of a
+configurable module must register itself with the process's CharnConfig
+instance, done automatically by subclassing CharnConfigModule. When a
+configuration is loaded or changed, the configLoad() method will be invoked. A
+module ought know its own default configuration.
