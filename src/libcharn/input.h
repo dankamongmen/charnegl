@@ -4,14 +4,12 @@
 #include <libconfig.h++>
 #include "libcharn/config.h"
 
-class InputRouterConfig : public CharnConfigModule,
-			public RegisteredInFactory<InputRouterConfig> {
+class InputRouterConfig : public CharnConfigModule {
 public:
 // TODO validate out setting, build up Input
 virtual void validateConfig(libconfig::Setting& setting) override { }
 
 static std::string getModuleName(){
-	s_bRegistered = true;
 	return "input";
 }
 

@@ -15,39 +15,6 @@ virtual ~CharnConfigModule() = default;
 virtual void validateConfig(libconfig::Setting& setting) = 0;
 };
 
-class CharnConfigModuleFactory {
-public:
-using TCreateMethod = std::unique_ptr<CharnConfigModule>(*)();
-TCreateMethod m_CreateFunc;
-CharnConfigModuleFactory() = delete;
-static bool Register(const std::string name, TCreateMethod createFunc){
-	if(auto it = s_methods.find(name) ; it == s_methods.end()){
-		s_methods[name] = createFunc;
-		return true;
-	}
-	return false;
-}
-
-static std::unique_ptr<CharnConfigModule> Create(const std::string& name){
-	if(auto it = s_methods.find(name); it != s_methods.end()){
-		return it->second();
-	}
-	return nullptr;
-}
-
-private:
-static std::map<std::string, TCreateMethod> s_methods;
-};
-
-template <typename T>
-class RegisteredInFactory {
-protected:
-static bool s_bRegistered;
-};
-
-template <typename T>
-bool RegisteredInFactory<T>::s_bRegistered = CharnConfigModuleFactory::Register(T::getModuleName(), T::CreateMethod);
-
 class CharnConfig {
 public:
 CharnConfig() : config() {};
@@ -65,6 +32,7 @@ template<typename T> bool getValue(const std::string& s, T& val){
 
 private:
 libconfig::Config config;
+std::map<std::string, CharnConfigModule *> modules;
 void validateToplevel();
 };
 

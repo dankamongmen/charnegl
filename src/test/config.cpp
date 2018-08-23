@@ -24,7 +24,7 @@ TEST(CharnConfig, CharnConfigString){
 #define CHARNSTANZA_KEY "testcharnkey"
 #define CHARNSTANZA_VAL "testcharnval"
 
-class TestModule : public CharnConfigModule, public RegisteredInFactory<TestModule> {
+class TestModule : public CharnConfigModule {
 public:
 virtual void validateConfig(libconfig::Setting& setting) override {
 	ASSERT_EQ(1, setting.getLength());
@@ -33,11 +33,9 @@ virtual void validateConfig(libconfig::Setting& setting) override {
 	EXPECT_STREQ(CHARNSTANZA_KEY, s.getName());
 	std::string val = s;
 	EXPECT_EQ(CHARNSTANZA_VAL, val);
-	//s_bRegistered = true;
 }
 
 static std::string getModuleName(){
-	s_bRegistered = true;
 	return CHARNSTANZA_LABEL;
 }
 

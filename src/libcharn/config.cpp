@@ -1,8 +1,6 @@
 #include <libconfig.h++>
 #include "libcharn/config.h"
 
-std::map<std::string, std::unique_ptr<CharnConfigModule>(*)()> CharnConfigModuleFactory::s_methods;
-
 // Ensure that the toplevel is, if anything, groups.
 // Throws a libconfig::ParseException on error.
 void CharnConfig::validateToplevel(){
@@ -13,8 +11,7 @@ void CharnConfig::validateToplevel(){
 			throw libconfig::ParseException(s.getSourceFile(),
 				s.getSourceLine(), s.getName());
 		}
-		std::unique_ptr<CharnConfigModule> ccm = 
-			CharnConfigModuleFactory::Create(s.getName());
+		CharnConfigModule *ccm = modules[s.getName()];
 		if(!ccm){
 			throw libconfig::ParseException(s.getSourceFile(),
 				s.getSourceLine(), s.getName());
