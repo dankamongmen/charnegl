@@ -14,8 +14,6 @@ TEST(CharnConfig, CharnConfigDefaultFile){
 TEST(CharnConfig, CharnConfigString){
 	std::ifstream ifs(CHARNCONFIG_EXTERNAL);
 	std::string str(std::istreambuf_iterator<char>{ifs}, {});
-	// TODO load the file used in CharnConfigDefaultFile to our own string,
-	// feed it in, use the same detailed checking
 	CharnConfig cf;
 	cf.loadString(str);
 }
@@ -50,14 +48,9 @@ TEST(CharnConfig, CharnConfigModule){
 	cf.loadString(CHARNSTANZA_LABEL " = { " CHARNSTANZA_KEY "=\"" CHARNSTANZA_VAL "\"; };");
 }
 
-// Verify that an unregistered toplevel stanza gets rejected.
-TEST(CharnConfig, CharnConfigModuleReject){
+// Verify that an unregistered toplevel stanza gets flagged.
+TEST(CharnConfig, CharnConfigModuleWarnings){
 	CharnConfig cf;
-	bool excepted = false;
-	try{
-		cf.loadString("qux = { foo=\"bar\"; };");
-	}catch(libconfig::ParseException& pe){
-		excepted = true;
-	}
-	EXPECT_TRUE(excepted);
+  cf.loadString("qux = { foo=\"bar\"; };");
+	EXPECT_TRUE(cf.hasWarnings());
 }

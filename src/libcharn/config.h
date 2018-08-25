@@ -17,7 +17,7 @@ virtual void validateConfig(libconfig::Setting& setting) = 0;
 
 class CharnConfig {
 public:
-CharnConfig() : config() {};
+CharnConfig() : warnings(false), config() {};
 
 // Load from the specified string. Propagates libconfig++ parsing exceptions.
 void loadString(const std::string& s);
@@ -30,10 +30,15 @@ template<typename T> bool getValue(const std::string& s, T& val){
 	return config.lookupValue(s, val);
 }
 
+bool hasWarnings(){
+  return warnings;
+}
+
 private:
 libconfig::Config config;
 std::map<std::string, CharnConfigModule *> modules;
 void validateToplevel();
+bool warnings;
 };
 
 #endif

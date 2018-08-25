@@ -1,3 +1,4 @@
+#include <iostream>
 #include <libconfig.h++>
 #include "libcharn/config.h"
 
@@ -13,10 +14,11 @@ void CharnConfig::validateToplevel(){
 		}
 		CharnConfigModule *ccm = modules[s.getName()];
 		if(!ccm){
-			throw libconfig::ParseException(s.getSourceFile(),
-				s.getSourceLine(), s.getName());
-		}
-		ccm->validateConfig(s);
+      std::cerr << "warning: unknown config toplevel " << s.getName() << std::endl;
+      warnings = true;
+		}else{
+		  ccm->validateConfig(s);
+    }
 	}
 }
 
