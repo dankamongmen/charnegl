@@ -51,6 +51,6 @@ TEST(CharnConfig, CharnConfigModule){
 // Verify that an unregistered toplevel stanza gets flagged.
 TEST(CharnConfig, CharnConfigModuleWarnings){
 	CharnConfig cf;
-  cf.loadString("qux = { foo=\"bar\"; };");
+	cf.loadString("qux = { foo=\"bar\"; };");
 	EXPECT_TRUE(cf.hasWarnings());
 }
